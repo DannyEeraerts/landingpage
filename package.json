@@ -2,7 +2,7 @@
   "name": "landingpage",
   "version": "1.0.0",
   "description": "landingpage EDweb&photoSTUDIO",
-  "main": "js/index.js",
+  "main": "js/copywrite_year.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
