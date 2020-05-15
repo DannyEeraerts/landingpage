@@ -9957,6 +9957,11 @@ body {
   font-size: 90%;
 }
 
+@media only screen and (min-width: 769px) {
+  #about {
+    height: 100vh;
+  }
+}
 @media only screen and (max-width: 667px) {
   #textwrapper {
     font-size: 66%;
