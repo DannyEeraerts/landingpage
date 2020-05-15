@@ -2,9 +2,9 @@
 This is my landingpage to bring my ideas to life
 
 ## Used tools for the landing page
-⋅⋅* HTML
-⋅⋅* SASS, CSS
-⋅⋅* JAVASCRIPT
+* HTML
+* SASS, CSS
+* JAVASCRIPT
 
 ## Note
 
