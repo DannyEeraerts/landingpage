@@ -14,7 +14,8 @@ $git-color: #de4c35;
 
 $theme-colors: (
         "dark": #333,
-        "warning": #b45c00,
+        "warning": #c36b00,
+        "error": darkred,
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -22,14 +23,22 @@ $theme-colors: (
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 $font-main: 'Roboto', sans-serif;
 
-body{
+body {
   color: $whitesmoke;
   font-family: $font-main;
 }
+
 .shadow {
-  text-shadow: 5px 5px 3px rgba(0,0,0,0.33);
+  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.33);
 }
-.arrow, .arrow-up{
+.shadow2 {
+  border-top: 0.5px solid map-get($theme-colors, warning);
+  border-left: 0.5px solid map-get($theme-colors, warning);
+  box-shadow: 5px 5px 3px rgba(0, 0, 0,0.5);
+}
+
+
+.arrow, .arrow-up {
   height: 1.5em;
   width: 1.5em;
   color: $whitesmoke;
@@ -37,26 +46,34 @@ body{
   transform: rotate(45deg);
   border: solid $whitesmoke;
 }
+
 .arrow {
   border-width: 0 0.15em 0.15em 0;
 }
-.arrow-up{
+
+.arrow-up {
   border-width: 0.15em 0 0 0.15em;
 }
 
-.image-round{
+.btn {
+  border: none;
+}
+
+.image-round {
   width: 66%;
   text-align: center;
-  border: solid 1px $whitesmoke;
+  border: solid 0.5px $whitesmoke;
   border-radius: 50%;
 }
 
 #about {
   background: $symfony-color;
-  .transf:hover{
+
+  .transf:hover {
     font-size: 1.5rem;
   }
-  #textWrapper{
+
+  #textWrapper {
     position: absolute;
     margin: 0 auto;
     top: 53%;
@@ -64,21 +81,24 @@ body{
     font-size: 90%;
   }
 }
+
 @media only screen and (min-width: 769px) {
-  #about{
+  #about {
     height: 100vh;
   }
 }
 
 @media only screen and (max-width: 667px) {
-  #textwrapper{
+  #textwrapper {
     font-size: 66%
   }
 }
-a:hover{
+
+a:hover {
   color: map-get($theme-colors, warning);
 }
-.btn:hover{
+
+.btn:hover {
   background-color: map-get($theme-colors, warning);
 }
 
@@ -86,8 +106,8 @@ a:hover{
   color: $symfony-color;
   background-color: $whitesmoke;
   opacity: 0.85;
-  h2{
-    text-align:center;
+  h2 {
+    text-align: center;
   }
 }
 
@@ -96,62 +116,75 @@ a:hover{
   background-color: $whitesmoke;
   opacity: 0.60;
   padding-bottom: 2em;
-  p{
+  p {
     opacity: 100;
   }
 
 }
-#contact{
+
+#contact {
   background-image: url("https://i.postimg.cc/yNdKDLHS/laptop-computer.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: left;
-  clear:both;
+  clear: both;
   margin-bottom: 2em;
 }
 
 .form-group.required .control-label:after {
-  content:"*";
-  color:map-get($theme-colors, warning);
+  content: "*";
+  color: map-get($theme-colors, warning);
 }
 
-.sas{
+.sas {
   background-color: $sas-color
 }
-.htm{
+
+.htm {
   background-color: $html-color
 }
-.css{
+
+.css {
   background-color: $css-color
 }
-.git{
+
+.git {
   background-color: $git-color;
 }
-.boo{
+
+.boo {
   background-color: $bootstrap-color;
 }
-.jav{
+
+.jav {
   background-color: $javascript-color;
 }
-.php{
+
+.php {
   background-color: $php-color;
 }
-.sym{
+
+.sym {
   background-color: $symfony-color;
 }
-.lig{
+
+.lig {
   background-color: $lightroom-color;
 }
-.ill{
+
+.ill {
   background-color: $illustrator-color;
 }
-.pho{
+
+.pho {
   background-color: $photoshop-color;
 }
-.sql{
+
+.sql {
   background-color: $sql-color;
 }
+
 /*ARROW TO TOP*/
 #return-to-top {
   position: fixed;
@@ -183,14 +216,15 @@ a:hover{
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  :hover{
+  &:hover {
     background: rgba(255, 255, 255, 0.15);
-    i{
+    i {
       border-color: $photoshop-color;
       transform: rotate(225deg);
     }
   }
 }
+
 .arrow-to-top {
   position: relative;
   left: 0.8rem;
@@ -200,8 +234,45 @@ a:hover{
   display: inline-block;
   padding: 10px;
 }
+
 .up {
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
 }
+
+.hide {
+  display: none
+}
+
+.show {
+  display: block;
+}
+
+.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage {
+  color: map-get($theme-colors, error);
+  font-size: 0.75rem;
+  border: 1px solid map_get($theme-colors, error);
+  padding: 5px;
+}
+.btn {
+  background: #3D94F6 linear-gradient(to bottom, #3D94F6, #1E62D0);
+  border-radius: 5px;
+  box-shadow: inset 3px 4px 6px 0 #D6DADF;
+  -webkit-box-shadow: inset 3px 4px 6px 0 #D6DADF;
+  -moz-box-shadow: inset 3px 4px 6px 0 #D6DADF;
+  text-shadow: 1px 1px 20px #000000;
+  border: solid #337FED 1px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  padding: 1rem;
+  &:hover{
+    background: #ff8c00 linear-gradient(to bottom, #b45c00, #c66a00);
+    border: none;
+  }
+}
+
+
+
 

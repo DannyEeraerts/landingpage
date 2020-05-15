@@ -16,12 +16,12 @@
     <section id="intro" class="container bg-dark vh-100 d-flex align-items-center">
         <div>
             <div class="row d-lg-flex align-items-lg-center align-content-lg-center mt-5">
-                <div class="offset-4 col-4 col-lg-4 offset-lg-1 col-lg-3 py-4 text-center img-fluid order-1 order-lg-0">
-                    <img class="image-round" src="images/main/Zelfportret%20_met_hoed.jpg"
+                <div class="offset-4 col-4 col-lg-4 offset-lg-1 col-lg-3 py-4 text-center img-fluid order-1 order-lg-0 ">
+                    <img class="image-round shadow2" src="images/main/Zelfportret%20_met_hoed.jpg"
                          alt="avatar danny">
                 </div>
                 <div class="col-12 col-lg-6 order-0 order-lg-1">
-                    <blockquote class="blockquote p-5 border border-warning text-center">
+                    <blockquote class="blockquote p-5 text-center shadow2">
                         <h4 class="mb-0">I have no special talent. I'am only passionately
                             curious.</h4>
                         <footer class="blockquote-footer"><cite title="Source Title">Albert
@@ -46,7 +46,7 @@
         </div>
     </section>
 
-    <section id="about" class="container-fluid">
+    <section id="about" class="container-fluid d-md-flex">
         <div class="row d-flex flex-column flex-md-row align-items-md-center align-content-md-center">
             <div class="col-12 col-md-4">
                 <div id="imageBoxWithText col">
@@ -62,48 +62,50 @@
             </div>
             <div class="col-12 col-md-8 pr-md-5 mt-5 mb-5">
                 <div class="mb-3 mb-md-5">
-                    <h2><span class="text-warning">Danny Eeraerts</span></h2>
-                    <h5>driven developer - passionate photographer - creative multitasker</h5>
+                    <h1><span class="text-warning display-3">Danny Eeraerts</span></h1>
+                    <h4>driven developer - passionate photographer - creative multitasker</h4>
                 </div>
                 <h3 class="text-muted mb-3">Who I am in a nutshell.</h3>
-                <ul>
+                <ul class="list-unstyled">
                     <li>
-                        <span class="text-warning">secretly a perfectionist</span>
-                        <p>If I start something, it must be right. Not half a job but a result that
+                        <h5><span class="text-warning">secretly a perfectionist</span></h5>
+                        <p>When I start something, it must be right. Not half a job but a result that
                             we can both be proud of.</p>
                     </li>
                     <li>
-                        <span class="text-warning">straightforward</span>
+                        <h5><span class="text-warning">straightforward</span></h5>
                         <p>There is no beating around the bush. If it is good, it is good but
                             sometimes it can be better and I will honestly say so.</p>
                     </li>
                     <li>
-                        <span class="text-warning">crazy about humor</span>
+                        <h5><span class="text-warning">crazy about humor</span></h5>
 
                         <p>I like to joke. I notice that when I ask you strange things for a photo.
                             I'am a loose screw.</p>
                     </li>
                     <li>
-                        <span class="text-warning">body and mind in balance</span>
+                        <h5><span class="text-warning">body and mind in balance</span></h5>
                         <p>Mileage on a bicycle is the ideal way for me to maintain my fitness and
                             to clear my head. Traveling, far or near, but always off the beaten
                             track, gives me new oxygen.
                         </p>
                     </li>
                 </ul>
-                <a href="cv.html" class="btn btn-primary border border-light mt-5 ml-5"> read my CV
-                    <i class="fas fa-caret-right fa-lg"></i>
-                </a>
-                <a href="documents/CV_Danny_Eeraerts.pdf" class="btn btn-primary border border-light mt-5"> download my CV
-                    <i class="fas fa-caret-right fa-lg"></i>
-                </a>
+                <div class="text-center text-md-left">
+                    <a href="cv.html" class="btn btn-primary mt-5 mr-md-5"> read my CV
+                        <i class="fas fa-caret-right fa-lg"></i>
+                    </a>
+                    <a href="documents/CV_Danny_Eeraerts.pdf" class="btn btn-primary mt-5"> download my CV
+                        <i class="fas fa-caret-right fa-lg"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
     <section id="skills" class="container-fluid">
         <div class="row align-content-center align-items-center ">
             <div class="col-12 text-center mt-4 mb-3">
-                <h1 class="mb-3 display-2">Skills</h1>
+                <h1 class="mb-3 display-3 text-warning shadow">Skills</h1>
             </div>
         </div>
         <div class="row align-content-center align-items-center mb-4">
@@ -274,15 +276,14 @@
         </div>
 
     </section>
-    <section id="contact" class="container-fluid vh-100">
+    <section id="contact" class="container-fluid">
         <div class="row align-content-center align-items-center ">
             <div class="col-12 text-center mt-4 mb-3">
                 <a href="#skills">
-                    <span class="text-info arrow-up"></span>
                 </a>
             </div>
-            <div class="col-12 col-md-6 align-items-center transparancy p-5">
-                <h2><span class="text-warning">Contact me</span></h2>
+            <div class="col-12 col-lg-6 align-items-center transparancy p-5">
+                <h1><span class="text-warning">Contact me</span></h1>
                 <form id="form"
                       autocomplete="off"
                       action="https://formspree.io/myrlzbgx"
@@ -297,7 +298,7 @@
                                class="form-control"
                                name="firstName"
                                type="text"
-                               placeholder="firstname (min 2 letters);">
+                               placeholder="firstname (min 2 letters)">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
@@ -308,7 +309,7 @@
                                class="form-control"
                                name="lastName"
                                type="text"
-                               placeholder="lastname (min 2 letters);">
+                               placeholder="lastname (min 2 letters)">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
@@ -319,7 +320,7 @@
                                name="address"
                                class="form-control"
                                type="text"
-                               placeholder=" &#9993; street nr city state (separated by space)">
+                               placeholder="&#9993; street nr city state (separated by space)">
                     </div>
                     <div class="form-group  required">
                         <label for="phoneInput" class="control-label">Phone/gsm</label>
@@ -328,7 +329,7 @@
                                type="text"
                                class="form-control"
                                pattern="[A-Za-z\s]{2,25},"
-                               placeholder=" &#9743; '0999 99 99 99 (respect spaces)'">
+                               placeholder="&#9743; 0999 99 99 99 (respect spaces)">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
@@ -339,7 +340,7 @@
                                class="form-control"
                                name="eMail"
                                type="email"
-                               placeholder=" &#64; example@mail.com">
+                               placeholder="&#64; example@mail.com">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
@@ -361,7 +362,7 @@
                     <p id="log" class="hide"></p>
                 </form>
             </div>
-            <div class="col-12 col-md-6 transparancy2 d-flex align-self-stretch align-items-center p-5">
+            <div class="col-12 col-lg-6 transparancy2 d-flex align-self-stretch align-items-center p-5">
                 <div id="content">
                     <h3><i class="text-warning fas fa-coffee">&nbsp;</i><span class="text-warning">Milk? Sugar?</span>
                     </h3>
@@ -398,9 +399,10 @@
         <a href="#intro" id="return-to-top"><i class="arrow-to-top up"></i></a>
     </div>
 </main>
-
+<script src="//code.jquery.com/jquery-1.11.3.min.js "></script>
 <script src="js/copywrite_year.js"></script>
 <script src="js/scroll_top.js"></script>
+<!--<script src="js/form_check.js"></script>-->
 
 </body>
 </html>
