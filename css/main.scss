@@ -1,0 +1,150 @@
+$whitesmoke: #F5F5F5;
+$photoshop-color: #00c8ff;
+$sql-color: #e48e00;
+$javascript-color: #fcd83c;
+$php-color: #4f5b93;
+$bootstrap-color: #563d7c;
+$css-color: #1b73ba;
+$html-color: #e34f26;
+$illustrator-color: #ff7c00;
+$lightroom-color: #aed3e9;
+$sas-color: #cf649a;
+$symfony-color: #000;
+$git-color: #de4c35;
+
+$theme-colors: (
+        "dark": #333,
+        "warning": #b45c00,
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$font-main: 'Roboto', sans-serif;
+
+body{
+  color: $whitesmoke;
+  font-family: $font-main;
+}
+.shadow {
+  text-shadow: 5px 5px 3px rgba(0,0,0,0.33);
+}
+.arrow, .arrow-up{
+  height: 1.5em;
+  width: 1.5em;
+  color: $whitesmoke;
+  display: inline-block;
+  transform: rotate(45deg);
+  border: solid $whitesmoke;
+}
+.arrow {
+  border-width: 0 0.15em 0.15em 0;
+}
+.arrow-up{
+  border-width: 0.15em 0 0 0.15em;
+}
+
+.image-round{
+  width: 66%;
+  text-align: center;
+  border: solid 1px $whitesmoke;
+  border-radius: 50%;
+}
+
+#about {
+  background: $symfony-color;
+  .transf:hover{
+    font-size: 1.5rem;
+  }
+  #textWrapper{
+    position: absolute;
+    margin: 0 auto;
+    top: 53%;
+    width: 100%;
+    font-size: 90%;
+  }
+}
+
+@media only screen and (max-width: 667px) {
+  #textwrapper{
+    font-size: 66%
+  }
+}
+a:hover{
+  color: map-get($theme-colors, warning);
+}
+.btn:hover{
+  background-color: map-get($theme-colors, warning);
+}
+
+.transparancy {
+  color: $symfony-color;
+  background-color: $whitesmoke;
+  opacity: 0.85;
+  h2{
+    text-align:center;
+  }
+}
+
+.transparancy2 {
+  color: $symfony-color;
+  background-color: $whitesmoke;
+  opacity: 0.60;
+  padding-bottom: 2em;
+  p{
+    opacity: 100;
+  }
+
+}
+#contact{
+  background-image: url("https://i.postimg.cc/yNdKDLHS/laptop-computer.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: left;
+  clear:both;
+  margin-bottom: 2em;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:map-get($theme-colors, warning);
+}
+
+.sas{
+  background-color: $sas-color
+}
+.htm{
+  background-color: $html-color
+}
+.css{
+  background-color: $css-color
+}
+.git{
+  background-color: $git-color;
+}
+.boo{
+  background-color: $bootstrap-color;
+}
+.jav{
+  background-color: $javascript-color;
+}
+.php{
+  background-color: $php-color;
+}
+.sym{
+  background-color: $symfony-color;
+}
+.lig{
+  background-color: $lightroom-color;
+}
+.ill{
+  background-color: $illustrator-color;
+}
+.pho{
+  background-color: $photoshop-color;
+}
+.sql{
+  background-color: $sql-color;
+}
+
