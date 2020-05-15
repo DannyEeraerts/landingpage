@@ -10093,14 +10093,15 @@ a:hover {
   background: rgba(255, 255, 255, 0.15);
 }
 #return-to-top i :hover i {
-  border-color: #41c5ff;
+  border-color: #00c8ff;
   transform: rotate(225deg);
 }
 
 .arrow-to-top {
   position: relative;
   left: 0.8rem;
-  border: solid darkorange;
+  border: solid;
+  border-color: #b45c00;
   border-width: 0 1px 1px 0;
   display: inline-block;
   padding: 10px;

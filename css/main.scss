@@ -186,7 +186,7 @@ a:hover{
   :hover{
     background: rgba(255, 255, 255, 0.15);
     i{
-      border-color: rgb(65, 197, 255);
+      border-color: $photoshop-color;
       transform: rotate(225deg);
     }
   }
@@ -194,7 +194,8 @@ a:hover{
 .arrow-to-top {
   position: relative;
   left: 0.8rem;
-  border: solid darkorange;
+  border: solid;
+  border-color: map-get($theme-colors, warning);
   border-width: 0 1px 1px 0;
   display: inline-block;
   padding: 10px;
