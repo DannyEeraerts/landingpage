@@ -248,12 +248,13 @@ a:hover {
   display: block;
 }
 
-.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage {
+.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage, .emailErrorMessage, .phoneErrorMessage, .messageErrorMessage, .policyAgreeErrorMessage {
   color: map-get($theme-colors, error);
   font-size: 0.75rem;
   border: 1px solid map_get($theme-colors, error);
   padding: 5px;
 }
+
 .btn {
   background: #3D94F6 linear-gradient(to bottom, #3D94F6, #1E62D0);
   border-radius: 5px;

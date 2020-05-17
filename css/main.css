@@ -10267,7 +10267,7 @@ a:hover {
   display: block;
 }
 
-.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage {
+.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage, .emailErrorMessage, .phoneErrorMessage, .messageErrorMessage, .policyAgreeErrorMessage {
   color: darkred;
   font-size: 0.75rem;
   border: 1px solid darkred;

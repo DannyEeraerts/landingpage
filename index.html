@@ -301,7 +301,7 @@
                                class="form-control"
                                name="firstName"
                                type="text"
-                               placeholder="firstname (min 2 letters)">
+                               placeholder="Min 2 letters, no numerals or symbols">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
@@ -312,12 +312,12 @@
                                class="form-control"
                                name="lastName"
                                type="text"
-                               placeholder="lastname (min 2 letters)">
+                               placeholder="Min 2 letters, no numerals or symbols">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
                             <label for="addressInput">Address</label>
-                            <label class="addressErrorMessage hide text-right"></label>
+                            <label class="addressErrorMessage hide"></label>
                         </div>
                         <input id="addressInput"
                                name="address"
@@ -326,18 +326,21 @@
                                placeholder="&#9993; street nr city state (separated by space)">
                     </div>
                     <div class="form-group  required">
-                        <label for="phoneInput" class="control-label">Phone/gsm</label>
+                        <div class="d-flex justify-content-between">
+                            <label for="phoneInput" class="control-label">Phone/gsm</label>
+                            <label class="phoneErrorMessage hide"></label>
+                        </div>
                         <input id="phoneInput"
                                name="phone"
                                type="text"
                                class="form-control"
                                pattern="[A-Za-z\s]{2,25},"
-                               placeholder="&#9743; 0999 99 99 99 (respect spaces)">
+                               placeholder="&#9743; 0(9)99999999 (no spaces)">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
                             <label for="emailInput" class="control-label">Emailadress</label>
-                            <label class="EmailErrorMessage hide text-right"></label>
+                            <label class="emailErrorMessage hide"></label>
                         </div>
                         <input id="emailInput"
                                class="form-control"
@@ -348,17 +351,20 @@
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
                             <label for="messageInput" class="control-label">Message</label>
-                            <label class="EmailErrorMessage hide text-right"></label>
+                            <label class="messageErrorMessage hide"></label>
                         </div>
                         <textarea id="messageInput"
                                   class="form-control"
                                   name="message"
-                                  placeholder="message (min 6 words)"></textarea>
+                                  placeholder="message (min 12 characters)"></textarea>
                     </div>
-                    <input id="check" name="present" class="exclude" type="checkbox"
-                           value="yes" required>
-                    <label for="check">I agree that my data will be processed in accordance with the
-                        <span class="color">privacy policy </span>.</label>
+                    <input id="policyAgreeCheck" name="policyAgree" class="exclude" type="checkbox"
+                           value="no" required>
+                    <label for="policyAgreeCheck">I agree that my data will be processed in accordance with the
+                        <span class="color">privacy policy. </span></label>
+                    <div class="d-flex justify-content-end">
+                        <label class="policyAgreeErrorMessage hide text-right"></label>
+                    </div>
                     <br/>
                     <button type="submit" class="btn btn-primary border border-light">Submit
                     </button>
@@ -404,7 +410,7 @@
 </main>
 <script src="js/copywrite_year.js"></script>
 <script src="js/scroll_top.js"></script>
-<!--<script src="js/form_check.js"></script>-->
+<script src="js/form_check.js"></script>
 
 </body>
 </html>
