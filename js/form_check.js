@@ -166,7 +166,7 @@ window.onload=function() {
     emailInputVerify();
     messageInputVerify();
     policyAgreeInputVerify();
-    if ( (firstNameErrorMessage.innerHTML !== "")||(lastNameErrorMessage.innerHTML !== "")||(phoneErrorMessage.innerHTML !== "")||(emailErrorMessage.innerHTML !== "")||(!policyAgreeInput.checked) ){
+    if ( (firstNameErrorMessage.innerHTML !== "")||(lastNameErrorMessage.innerHTML !== "")||(phoneErrorMessage.innerHTML !== "")||(emailErrorMessage.innerHTML !== "")||(messageErrorMessage.innerHTML !== "")||(!policyAgreeInput.checked) ){
       e.preventDefault();
     }
   }
