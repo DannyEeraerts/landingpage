@@ -75,7 +75,6 @@ window.onload=function() {
       tmpl.setAttribute("value", element[0]);
       tmpl.innerHTML = element[0];
       target.appendChild(tmpl);
-      return true;
     });
   }
 
