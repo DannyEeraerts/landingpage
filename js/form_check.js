@@ -1,10 +1,18 @@
 window.onload=function() {
   // declarations
+  const ax = axios.create({
+    baseURL: 'https://dannyeeraerts.github.io/landingpage/public'
+
+    /*baseURL: 'http://localhost:8888/landingpage/public'*/
+  });
+
   const form = document.querySelector('#form');
 
   const firstNameInput = document.querySelector("#firstNameInput");
   const lastNameInput = document.querySelector("#lastNameInput");
   const addressInput = document.querySelector("#addressInput");
+  const postalNumberInput = document.querySelector('#zipInput');
+  const target = document.getElementById('target');
   const emailInput = document.querySelector("#emailInput");
   const phoneInput = document.querySelector("#phoneInput");
   const policyAgreeInput = document.querySelector("#policyAgreeCheck");
@@ -12,6 +20,7 @@ window.onload=function() {
   const firstNameErrorMessage = document.querySelector(".firstNameErrorMessage");
   const lastNameErrorMessage = document.querySelector(".lastNameErrorMessage");
   const addressErrorMessage = document.querySelector(".addressErrorMessage");
+  const zipErrorMessage = document.querySelector(".zipErrorMessage");
   const emailErrorMessage = document.querySelector(".emailErrorMessage");
   const phoneErrorMessage = document.querySelector(".phoneErrorMessage");
   const messageErrorMessage = document.querySelector(".messageErrorMessage");
@@ -51,12 +60,44 @@ window.onload=function() {
 
   function addressInputVerify() {
     if (addressInput.value !== "") {
-      if (regaddressCheck(addressInput.value)) {
+      if (addressCheck(addressInput.value)) {
         emptyMessage(addressErrorMessage);
       } else {
-        addressErrorMessage.innerHTML = "Address has no valid format. Not separated by space(s)&nbsp;&#x274C";
+        addressErrorMessage.innerHTML = "Min 2 characters&nbsp;&nbsp;&#x274C";
         toggleErrorMessage(addressErrorMessage);
       }
+    }
+  }
+
+  function postalNumberVerify() {
+    if (postalNumberInput.value !== "") {
+      if (regPostalNumberCheck(postalNumberInput.value)) {
+        connect_with_json_file(ax, postalNumberInput.value);
+        if (zipErrorMessage.className === "zipErrorMessage hide") {
+
+          let arrayCity = [];
+          find_cities_with_same_postnr(ax, postalNumberInput.value, arrayCity);
+          target.innerHTML = "";
+
+          setTimeout(() => {
+            console.log ("before buildTemplate");
+            arrayCity.forEach(buildTemplate(arrayCity));
+          }, 450);
+        } else {
+          target.innerHTML = "";
+          console.log("error");
+        }
+      } else {
+        target.innerHTML = "";
+        zipErrorMessage.innerHTML = "Not a belgian postal number.&nbsp;&nbsp;&#x274C";
+        toggleErrorMessage(zipErrorMessage);
+      }
+      /*} else {
+        target.innerHTML = "";
+        zipErrorMessage.innerHTML = "Postalnumber is required&nbsp;&nbsp;&#x274C;";
+        toggleErrorMessage(zipErrorMessage);
+      }*/
+
     }
   }
 
@@ -130,13 +171,18 @@ window.onload=function() {
     return (nameRegex.test(nameCheck));
   }
 
-  function regaddressCheck(addressCheck) {
-    let addressRegex = /^([1-9][e][\s])*([a-zA-Zàâçéèêëîïôûùüÿñ\- /']+(([.][\s])?|([\s]))?)+[1-9][0-9]*(([-]|[\/][1-9][[0-9]*)|([\s]?[a-zA-Z 1-9]+))?$/;
-    return (addressRegex.test(addressCheck));
+  function addressCheck(nameCheck) {
+    let nameRegex = /^[a-zA-Z0-9àâçéèêëîïôûùüÿñæœ /'-]{2,}$/;
+    return (nameRegex.test(nameCheck));
+  }
+
+  function regPostalNumberCheck(postalnumberCheck) {
+    let postalnumberRegex = /^(?:(?:[0-9])(?:\d{3}))$/;
+    return (postalnumberRegex.test(postalnumberCheck));
   }
 
   function regphoneCheck(phoneCheck) {
-    let phoneRegex = /^0{1}[0-9]{8,9}$/;
+    let phoneRegex = /^0[0-9]{8,9}$/;
     return (phoneRegex.test(phoneCheck));
   }
 
@@ -159,9 +205,66 @@ window.onload=function() {
     return string.toLowerCase();
   }
 
-  function CheckAll(e){
+  function connect_with_json_file(ax, postalNumber) {
+    console.log("in connection file");
+    ax.get("belgian_postalNumbers.json")
+    .then((response) => {
+      let result = response.data;
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].postnummer === parseInt(postalNumber)) {
+          emptyMessage(zipErrorMessage);
+          return;
+        } else {
+          zipErrorMessage.innerHTML = "This is not a Belgian postal number.&nbsp;&nbsp;&#x274C";
+          toggleErrorMessage(zipErrorMessage);
+        }
+      }
+      //build template one
+
+    })
+    .catch((error) => {
+      console.log("connection failure");
+      //catch error
+      console.log(error);
+    });
+  }
+
+  function find_cities_with_same_postnr(ax, postalNumber, arrayCity) {
+    ax.get("belgian_postalNumbers.json")
+    .then((response) => {
+      let result = response.data;
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].postnummer === parseInt(postalNumber)) {
+          console.log(typeof(result[i].postnummer));
+          console.log(typeof(postalNumber));
+          let gemeente = result[i].gemeente.toLowerCase();
+          let gemeenteId = result[i].gemeente_ID;
+          let gemeenteFirstLetterCapitalize = gemeente.charAt(0).toUpperCase() + gemeente.slice(1);
+          arrayCity.push([gemeenteFirstLetterCapitalize, gemeenteId]);
+        }
+      }
+      return arrayCity;
+    })
+    .catch((error) => {
+      //catch error
+      console.log(error);
+      console.log("This path is not found , please try again <span class='stop'>×</span>");
+    });
+  }
+
+  function buildTemplate(array) {
+    array.forEach(element => {
+      let tmpl = document.createElement('option');
+      tmpl.setAttribute("value", element[0]);
+      tmpl.innerHTML = element[0];
+      target.appendChild(tmpl);
+    });
+  }
+
+    function CheckAll(e){
     firstNameInputVerify();
     lastNameInputVerify();
+    addressInputVerify();
     phoneInputVerify();
     emailInputVerify();
     messageInputVerify();
@@ -177,6 +280,10 @@ window.onload=function() {
   firstNameErrorMessage.addEventListener("click", removeErrorMessage);
   lastNameInput.addEventListener('blur',lastNameInputVerify );
   lastNameErrorMessage.addEventListener('click', removeErrorMessage);
+  addressInput.addEventListener('blur', addressInputVerify);
+  addressErrorMessage.addEventListener('click', removeErrorMessage);
+  postalNumberInput.addEventListener('blur', postalNumberVerify);
+  zipErrorMessage.addEventListener('click', removeErrorMessage);
   emailInput.addEventListener('blur', emailInputVerify);
   emailErrorMessage.addEventListener('click', removeErrorMessage);
   phoneInput.addEventListener('blur', phoneInputVerify);

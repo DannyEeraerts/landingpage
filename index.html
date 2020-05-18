@@ -314,7 +314,7 @@
                                type="text"
                                placeholder="Min 2 letters, no numerals or symbols">
                     </div>
-                    <div class="form-group required">
+                    <div class="form-group ">
                         <div class="d-flex justify-content-between">
                             <label for="addressInput">Address</label>
                             <label class="addressErrorMessage hide"></label>
@@ -323,7 +323,31 @@
                                name="address"
                                class="form-control"
                                type="text"
-                               placeholder="&#9993; street nr city state (separated by space)">
+                               placeholder="&#9993; street nr (box)">
+                    </div>
+                    <div class ="form-row ">
+                        <div class="form-group col-3">
+                            <div class="d-flex justify-content-between">
+                                <label for="zipInput">Postal number</label>
+                                <label class="zipErrorMessage hide"></label>
+                            </div>
+                            <input id="zipInput"
+                                   name="postalNumber"
+                                   class="form-control"
+                                   type="text"
+                                   placeholder="zip code">
+                        </div>
+
+                        <div class="form-group offset-1 col-8">
+                            <div class="d-flex justify-content-between">
+                                <label for="target">City</label>
+                                <label class="cityErrorMessage hide"></label>
+                            </div>
+                            <div>
+                                <select name="city" class="form-control" id="target" >
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group  required">
                         <div class="d-flex justify-content-between">
@@ -346,7 +370,7 @@
                                class="form-control"
                                name="eMail"
                                type="email"
-                               placeholder="&#64; example@mail.com">
+                               placeholder="example@mail.com">
                     </div>
                     <div class="form-group required">
                         <div class="d-flex justify-content-between">
@@ -408,6 +432,7 @@
         <a href="#intro" id="return-to-top"><i class="arrow-to-top up"></i></a>
     </div>
 </main>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="js/copywrite_year.js"></script>
 <script src="js/scroll_top.js"></script>
 <script src="js/form_check.js"></script>

@@ -248,7 +248,7 @@ a:hover {
   display: block;
 }
 
-.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage, .emailErrorMessage, .phoneErrorMessage, .messageErrorMessage, .policyAgreeErrorMessage {
+.addressErrorMessage, .firstNameErrorMessage, .lastNameErrorMessage, .emailErrorMessage, .phoneErrorMessage, .messageErrorMessage, .policyAgreeErrorMessage, .zipErrorMessage {
   color: map-get($theme-colors, error);
   font-size: 0.75rem;
   border: 1px solid map_get($theme-colors, error);
