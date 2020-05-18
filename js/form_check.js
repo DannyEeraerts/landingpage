@@ -1,9 +1,9 @@
 window.onload=function() {
   // declarations
   const ax = axios.create({
-    baseURL: 'https://dannyeeraerts.github.io/landingpage/public'
+    /*baseURL: 'https://dannyeeraerts.github.io/landingpage/public'*/
 
-    /*baseURL: 'http://localhost:8888/landingpage/public'*/
+    baseURL: 'http://localhost:8888/landingpage/public'
   });
 
   const form = document.querySelector('#form');
@@ -69,23 +69,31 @@ window.onload=function() {
     }
   }
 
+  function buildTemplate(array) {
+    array.forEach(element => {
+      let tmpl = document.createElement('option');
+      tmpl.setAttribute("value", element[0]);
+      tmpl.innerHTML = element[0];
+      target.appendChild(tmpl);
+      return true;
+    });
+  }
+
   function postalNumberVerify() {
     if (postalNumberInput.value !== "") {
       if (regPostalNumberCheck(postalNumberInput.value)) {
         connect_with_json_file(ax, postalNumberInput.value);
         if (zipErrorMessage.className === "zipErrorMessage hide") {
 
-          let arrayCity = [];
-          find_cities_with_same_postnr(ax, postalNumberInput.value, arrayCity);
+          let arrayCities = [];
+          find_cities_with_same_postnr(ax, postalNumberInput.value, arrayCities);
           target.innerHTML = "";
 
           setTimeout(() => {
-            console.log ("before buildTemplate");
-            arrayCity.forEach(buildTemplate(arrayCity));
-          }, 450);
+              buildTemplate(arrayCities);
+          }, 500);
         } else {
           target.innerHTML = "";
-          console.log("error");
         }
       } else {
         target.innerHTML = "";
@@ -229,35 +237,24 @@ window.onload=function() {
     });
   }
 
-  function find_cities_with_same_postnr(ax, postalNumber, arrayCity) {
+  function find_cities_with_same_postnr(ax, postalNumber, arrayCities) {
     ax.get("belgian_postalNumbers.json")
     .then((response) => {
       let result = response.data;
       for (let i = 0; i < result.length; i++) {
         if (result[i].postnummer === parseInt(postalNumber)) {
-          console.log(typeof(result[i].postnummer));
-          console.log(typeof(postalNumber));
           let gemeente = result[i].gemeente.toLowerCase();
           let gemeenteId = result[i].gemeente_ID;
           let gemeenteFirstLetterCapitalize = gemeente.charAt(0).toUpperCase() + gemeente.slice(1);
-          arrayCity.push([gemeenteFirstLetterCapitalize, gemeenteId]);
+          arrayCities.push([gemeenteFirstLetterCapitalize, gemeenteId]);
         }
       }
-      return arrayCity;
+      return arrayCities;
     })
     .catch((error) => {
       //catch error
       console.log(error);
       console.log("This path is not found , please try again <span class='stop'>×</span>");
-    });
-  }
-
-  function buildTemplate(array) {
-    array.forEach(element => {
-      let tmpl = document.createElement('option');
-      tmpl.setAttribute("value", element[0]);
-      tmpl.innerHTML = element[0];
-      target.appendChild(tmpl);
     });
   }
 
