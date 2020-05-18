@@ -1,9 +1,9 @@
 window.onload=function() {
   // declarations
   const ax = axios.create({
-    /*baseURL: 'https://dannyeeraerts.github.io/landingpage/public'*/
+    baseURL: 'https://dannyeeraerts.github.io/landingpage/public'
 
-    baseURL: 'http://localhost:8888/landingpage/public'
+    /*baseURL: 'http://localhost:8888/landingpage/public'*/
   });
 
   const form = document.querySelector('#form');
