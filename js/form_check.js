@@ -1,8 +1,7 @@
 window.onload=function() {
   // declarations
   const ax = axios.create({
-    baseURL: 'https://dannyeeraerts.github.io/landingpage/public'
-
+   baseURL: 'https://dannyeeraerts.github.io/landingpage/public'
     /*baseURL: 'http://localhost:8888/landingpage/public'*/
   });
 
@@ -80,17 +79,18 @@ window.onload=function() {
 
   function postalNumberVerify() {
     if (postalNumberInput.value !== "") {
+
       if (regPostalNumberCheck(postalNumberInput.value)) {
         connect_with_json_file(ax, postalNumberInput.value);
+        console.log(zipErrorMessage.className);
         if (zipErrorMessage.className === "zipErrorMessage hide") {
-
+          console.log("voor zoeken");
           let arrayCities = [];
           find_cities_with_same_postnr(ax, postalNumberInput.value, arrayCities);
           target.innerHTML = "";
-
           setTimeout(() => {
               buildTemplate(arrayCities);
-          }, 500);
+          }, 550);
         } else {
           target.innerHTML = "";
         }
@@ -165,7 +165,7 @@ window.onload=function() {
   function emptyMessage(errorMessage){
     errorMessage.innerHTML = "";
     errorMessage.classList.remove("show");
-    errorMessage.classList.add('hide');
+    errorMessage.classList.add("hide");
   }
 
   function toggleErrorMessage(errorMessage){
@@ -213,13 +213,15 @@ window.onload=function() {
   }
 
   function connect_with_json_file(ax, postalNumber) {
-    console.log("in connection file");
-    ax.get("belgian_postalNumbers.json")
+    ax.get("zipcode-belgium.json")
     .then((response) => {
       let result = response.data;
       for (let i = 0; i < result.length; i++) {
-        if (result[i].postnummer === parseInt(postalNumber)) {
+        if (parseInt(result[i].zip) === parseInt(postalNumber)) {
+          console.log(parseInt(result[i].zip));
           emptyMessage(zipErrorMessage);
+          console.log("leeg maken");
+          console.log(zipErrorMessage.className);
           return;
         } else {
           zipErrorMessage.innerHTML = "This is not a Belgian postal number.&nbsp;&nbsp;&#x274C";
@@ -237,15 +239,16 @@ window.onload=function() {
   }
 
   function find_cities_with_same_postnr(ax, postalNumber, arrayCities) {
-    ax.get("belgian_postalNumbers.json")
+    ax.get("zipcode-belgium.json")
     .then((response) => {
+      console.log("in find cities");
       let result = response.data;
       for (let i = 0; i < result.length; i++) {
-        if (result[i].postnummer === parseInt(postalNumber)) {
-          let gemeente = result[i].gemeente.toLowerCase();
-          let gemeenteId = result[i].gemeente_ID;
+        if (parseInt(result[i].zip) === parseInt(postalNumber)) {
+          let gemeente = result[i].city.toLowerCase();
+          let gemeenteZip = parseInt(result[i].zip);
           let gemeenteFirstLetterCapitalize = gemeente.charAt(0).toUpperCase() + gemeente.slice(1);
-          arrayCities.push([gemeenteFirstLetterCapitalize, gemeenteId]);
+          arrayCities.push([gemeenteFirstLetterCapitalize, gemeenteZip]);
         }
       }
       return arrayCities;
@@ -278,6 +281,7 @@ window.onload=function() {
   lastNameErrorMessage.addEventListener('click', removeErrorMessage);
   addressInput.addEventListener('blur', addressInputVerify);
   addressErrorMessage.addEventListener('click', removeErrorMessage);
+  postalNumberInput.addEventListener('keyup', postalNumberVerify);
   postalNumberInput.addEventListener('blur', postalNumberVerify);
   zipErrorMessage.addEventListener('click', removeErrorMessage);
   emailInput.addEventListener('blur', emailInputVerify);
